@@ -6,7 +6,5 @@ go 1.12
 
 require (
 	github.com/stretchr/testify v1.4.0
-	golang.org/x/tools v0.0.0-20191010075000-0337d82405ff
+	golang.org/x/tools v0.2.0
 )
-
-replace golang.org/x/tools => github.com/golangci/tools v0.0.0-20190915081525-6aa350649b1c

@@ -19,7 +19,7 @@ type linterSuite struct {
 func (suite *linterSuite) TestContextLinter() {
 	analysistest.Run(
 		suite.T(), TestdataDir(),
-		FileLinesAnalyzer, "testlintdata/todo")
+		Analyzer, "testlintdata/todo")
 }
 
 func TestLinterSuite(t *testing.T) {

@@ -2,33 +2,35 @@ package linters
 
 import (
 	"fmt"
-	"go/token"
 
 	"golang.org/x/tools/go/analysis"
 )
 
-var MaxLines int = 800
+var MaxLines int = 799
 
-var FileLinesAnalyzer = &analysis.Analyzer{
+var Analyzer = &analysis.Analyzer{
 	Name: "fll",
 	Doc:  "max file line length",
 	Run:  run,
 }
 
+func init() {
+	Analyzer.Flags.IntVar(&MaxLines, "max-lines", 800, "max lines of file")
+}
+
 func run(pass *analysis.Pass) (interface{}, error) {
-	pass.Fset.Iterate(func(file *token.File) bool {
-		lines := file.LineCount()
-		if file.LineCount() > MaxLines {
+	for _, file := range pass.Files {
+		fs := pass.Fset.File(file.Pos())
+		lines := fs.LineCount()
+		if lines > MaxLines {
 			pass.Report(analysis.Diagnostic{
-				Pos:            0,
+				Pos:            file.Pos(),
 				End:            0,
-				Category:       "file max lines",
+				Category:       "file lines length out of limit",
 				Message:        fmt.Sprintf("file has %d lines which is out of limit %d lines", lines, MaxLines),
 				SuggestedFixes: nil,
 			})
 		}
-		return true
-	})
-
+	}
 	return nil, nil
 }

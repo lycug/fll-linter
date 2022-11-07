@@ -15,5 +15,5 @@ func TestAll(t *testing.T) {
 	}
 
 	testdata := filepath.Join(filepath.Dir(filepath.Dir(wd)), "testdata")
-	analysistest.Run(t, testdata, FileLinesAnalyzer, "todo")
+	analysistest.Run(t, testdata, Analyzer, "todo")
 }

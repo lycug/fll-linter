@@ -1,13 +1,6 @@
 package todo
 
-import (
-	"fmt"
-	"time"
-)
-
-func SomeFunc4() {
-	fmt.Println("SomeFunc4")
-	_ = time.Now()
+func SomeFunc5() {
 	_ = 1 + 4
 	_ = 1 + 4
 	_ = 1 + 4
@@ -906,4 +899,4 @@ func SomeFunc4() {
 	_ = 1 + 4
 }
 
-// TODO: do something // want "file has 909 lines which is out of limit 800 lines"
+// TODO: do something // want "file has 902 lines which is out of limit 800 lines"
